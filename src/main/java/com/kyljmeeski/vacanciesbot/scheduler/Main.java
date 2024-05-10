@@ -1,5 +1,6 @@
 package com.kyljmeeski.vacanciesbot.scheduler;
 
+import com.kyljmeeski.plainscheduler.*;
 import com.kyljmeeski.rabbitmqwrapper.*;
 import com.rabbitmq.client.ConnectionFactory;
 
@@ -23,6 +24,17 @@ public class Main {
             ).bind(exchange, "import-tasks");
 
             Producer producer = new PlainProducer(factory, exchange, "import-tasks");
+
+            Task task = new PlainTask(() -> {
+                try {
+                    producer.produce("{\"pages\": 1}");
+                } catch (IOException | TimeoutException e) {
+                    throw new RuntimeException(e);
+                }
+            }, TaskFrequency.everySeconds(2));
+
+            Scheduler scheduler = new PlainScheduler();
+            scheduler.schedule(task);
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException("Check RabbitMQ.");
         }
