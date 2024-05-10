@@ -1,9 +1,6 @@
 package com.kyljmeeski.vacanciesbot.scheduler;
 
-import com.kyljmeeski.rabbitmqwrapper.Exchanges;
-import com.kyljmeeski.rabbitmqwrapper.Queues;
-import com.kyljmeeski.rabbitmqwrapper.RabbitExchange;
-import com.kyljmeeski.rabbitmqwrapper.RabbitQueue;
+import com.kyljmeeski.rabbitmqwrapper.*;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
@@ -24,6 +21,8 @@ public class Main {
             RabbitQueue queue = queues.declare(
                     "vacancy-import-tasks", false, false, false, null
             ).bind(exchange, "import-tasks");
+
+            Producer producer = new PlainProducer(factory, exchange, "import-tasks");
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException("Check RabbitMQ.");
         }
