@@ -39,6 +39,9 @@ public class Main {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setPort(applicationProperties.rabbitMQPort());
         factory.setHost(applicationProperties.rabbitMQHost());
+
+        System.out.println(applicationProperties.rabbitMQHost() + ":" + applicationProperties.rabbitMQPort());
+
         try {
             Connection connection = factory.newConnection();
             Exchanges exchanges = new Exchanges(connection);
