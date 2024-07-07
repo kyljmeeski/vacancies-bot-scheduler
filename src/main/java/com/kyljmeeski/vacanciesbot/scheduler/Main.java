@@ -25,6 +25,7 @@ package com.kyljmeeski.vacanciesbot.scheduler;
 
 import com.kyljmeeski.plainscheduler.*;
 import com.kyljmeeski.rabbitmqwrapper.*;
+import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
@@ -36,31 +37,36 @@ public class Main {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setPort(5672);
         factory.setHost("localhost");
-
-        Exchanges exchanges = new Exchanges(factory);
-        Queues queues = new Queues(factory);
-
         try {
-            RabbitExchange exchange = exchanges.declare("vacancies", "direct");
-            RabbitQueue queue = queues.declare(
-                    "vacancy-import-tasks", false, false, false, null
-            ).bind(exchange, "import-tasks");
+            Connection connection = factory.newConnection();
+            Exchanges exchanges = new Exchanges(connection);
+            Queues queues = new Queues(connection);
 
-            Producer producer = new PlainProducer(factory, exchange, "import-tasks");
+            try {
+                RabbitExchange exchange = exchanges.declare("vacancies", "direct");
+                RabbitQueue queue = queues.declare(
+                        "vacancy-import-tasks", false, false, false, null
+                ).bind(exchange, "import-tasks");
 
-            Task task = new PlainTask(() -> {
-                try {
-                    producer.produce("{\"pages\": 1}");
-                } catch (IOException | TimeoutException e) {
-                    throw new RuntimeException(e);
-                }
-            }, TaskFrequency.everySeconds(2));
+                Producer producer = new PlainProducer(connection, exchange, "import-tasks");
 
-            Scheduler scheduler = new PlainScheduler();
-            scheduler.schedule(task);
+                Task task = new PlainTask(() -> {
+                    try {
+                        producer.produce("{\"pages\": 1}");
+                    } catch (IOException | TimeoutException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, TaskFrequency.everySeconds(2));
+
+                Scheduler scheduler = new PlainScheduler();
+                scheduler.schedule(task);
+            } catch (IOException | TimeoutException e) {
+                throw new RuntimeException("Check RabbitMQ.");
+            }
         } catch (IOException | TimeoutException e) {
-            throw new RuntimeException("Check RabbitMQ.");
+            throw new RuntimeException(e);
         }
+
     }
 
 }
