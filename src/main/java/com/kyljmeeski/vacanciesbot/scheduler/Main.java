@@ -34,9 +34,11 @@ import java.util.concurrent.TimeoutException;
 public class Main {
 
     public static void main(String[] args) {
+        ApplicationProperties applicationProperties = new ApplicationProperties();
+
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setPort(5672);
-        factory.setHost("localhost");
+        factory.setPort(applicationProperties.rabbitMQPort());
+        factory.setHost(applicationProperties.rabbitMQHost());
         try {
             Connection connection = factory.newConnection();
             Exchanges exchanges = new Exchanges(connection);
