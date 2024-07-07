@@ -40,7 +40,10 @@ public class Main {
         factory.setPort(applicationProperties.rabbitMQPort());
         factory.setHost(applicationProperties.rabbitMQHost());
 
-        System.out.println(applicationProperties.rabbitMQHost() + ":" + applicationProperties.rabbitMQPort());
+        System.out.println("Scheduler is sending tasks to the queue \"vacancy-import-tasks\"@" +
+                applicationProperties.rabbitMQHost() + ":" + applicationProperties.rabbitMQPort() + " every " +
+                applicationProperties.delay() + " minutes"
+        );
 
         try {
             Connection connection = factory.newConnection();
@@ -61,7 +64,7 @@ public class Main {
                     } catch (IOException | TimeoutException e) {
                         throw new RuntimeException(e);
                     }
-                }, TaskFrequency.everySeconds(2));
+                }, TaskFrequency.everyMinutes(applicationProperties.delay()));
 
                 Scheduler scheduler = new PlainScheduler();
                 scheduler.schedule(task);

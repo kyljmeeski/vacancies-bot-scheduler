@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00094836-c200-4c97-8c44-ff8a8d1b6fcd" name="Changes" comment="dep: update rabbitmq-wrapper up to 0.0.3; correct Main">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kyljmeeski/vacanciesbot/scheduler/ApplicationProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="00094836-c200-4c97-8c44-ff8a8d1b6fcd" name="Changes" comment="add Dockerfile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kyljmeeski/vacanciesbot/scheduler/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kyljmeeski/vacanciesbot/scheduler/ApplicationProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kyljmeeski/vacanciesbot/scheduler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kyljmeeski/vacanciesbot/scheduler/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -103,7 +104,39 @@
       <option name="project" value="LOCAL" />
       <updated>1720326033115</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="create application.properties">
+      <option name="closed" value="true" />
+      <created>1720351108483</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720351108483</updated>
+    </task>
+    <task id="LOCAL-00004" summary="create ApplicationProperties">
+      <option name="closed" value="true" />
+      <created>1720351120097</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720351120097</updated>
+    </task>
+    <task id="LOCAL-00005" summary="use ApplicationProperties">
+      <option name="closed" value="true" />
+      <created>1720351125854</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720351125854</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add Dockerfile">
+      <option name="closed" value="true" />
+      <created>1720354498857</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1720354498857</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,6 +153,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="dep: update rabbitmq-wrapper up to 0.0.3; correct Main" />
-    <option name="LAST_COMMIT_MESSAGE" value="dep: update rabbitmq-wrapper up to 0.0.3; correct Main" />
+    <MESSAGE value="create application.properties" />
+    <MESSAGE value="create ApplicationProperties" />
+    <MESSAGE value="use ApplicationProperties" />
+    <MESSAGE value="add Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Dockerfile" />
   </component>
 </project>

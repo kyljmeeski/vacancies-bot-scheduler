@@ -37,4 +37,11 @@ public class ApplicationProperties {
         return Integer.parseInt(properties.getProperty("rabbitmq.port"));
     }
 
+    public int delay() {
+        if (mode.equals("component")) {
+            return Integer.parseInt(System.getenv("IMPORT_DELAY_IN_MINUTES"));
+        }
+        return Integer.parseInt(properties.getProperty("import-delay-in-minutes"));
+    }
+
 }
